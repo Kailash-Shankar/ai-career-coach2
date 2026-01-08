@@ -30,8 +30,8 @@ export const onboardingSchema = z.object({
 export const contactSchema = z.object({
     email: z.string().email("Invalid email address"),
     mobile: z.string().optional(),
-    Linkedin: z.string().optional,
-    X: z.string().optional,
+    linkedin: z.string().optional(),
+    X: z.string().optional(),
 })
 
 export const entrySchema = z.object({
