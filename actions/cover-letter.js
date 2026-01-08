@@ -10,7 +10,7 @@ const model = genAI.getGenerativeModel({
     model: process.env.MODEL,
 });
 
-export async function saveResume(content) {
+export async function saveCoverLetter(content) {
     const {userId} = await auth();
         if (!userId) throw new Error("Unauthorized");
     
@@ -46,7 +46,7 @@ export async function saveResume(content) {
 
     }
 
-    export async function getResume() {
+    export async function getCoverLetter() {
         const {userId} = await auth();
         if (!userId) throw new Error("Unauthorized");
 
@@ -78,21 +78,31 @@ export async function saveResume(content) {
         if (!user) throw new Error("User not found");
 
     const prompt = `
-    As an expert resume writer, improve the following ${type} description for a ${user.industry} professional working at ${organization}.
-    Make it more impactful, quantifiable, and aligned with industry standards.
-    Current content: "${current}"
-
-    Requirements:
-    1. Use action verbs
-    2. Include metrics and results where possible
-    3. Highlight relevant technical skills
-    4. Keep it concise but detailed
-    5. Focus on achievements over responsibilities
-    6. Use industry-specific keywords
+    Write a professional cover letter for a ${data.jobTitle} position at ${
+    data.companyName
+  }.
     
-    Format the response as a single paragraph without any additional text or explanations.
-    Keep it STRICTLY UNDER 3 SENTENCES.
+    About the candidate:
+    - Industry: ${user.industry}
+    - Years of Experience: ${user.experience}
+    - Skills: ${user.skills?.join(", ")}
+    - Professional Background: ${user.bio}
+    
+    Job Description:
+    ${data.jobDescription}
+    
+    Requirements:
+    1. Use a professional, enthusiastic tone
+    2. Highlight relevant skills and experience
+    3. Show understanding of the company's needs
+    4. Keep it concise (max 400 words)
+    5. Use proper business letter formatting in markdown
+    6. Include specific examples of achievements
+    7. Relate candidate's background to job requirements
+    
+    Format the letter in markdown.
   `;
+
 
   try {
     const result = await model.generateContent(prompt);

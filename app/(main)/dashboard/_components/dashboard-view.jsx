@@ -163,7 +163,7 @@ const DashboardView = ({ insights }) => {
       <Tooltip content={(active, payload, label)=>{
         if (active && payload && payload.length){
             return (
-                <div classname="bg-backgrouund border rounded-lg p-2 shadow-md">
+                <div className="bg-backgrouund border rounded-lg p-2 shadow-md">
                     <p className="font-medium">{label}</p>
                     {payload.map((item) => {
                         <p key={item.name} className="text-sm">
