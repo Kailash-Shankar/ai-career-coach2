@@ -48,11 +48,7 @@ useEffect(() => {
                     Get Started
                     </Button>
                     </Link>
-                <Link href="/dashboard">
-                <Button  size="lg" className="px-8" variant="outline"> 
-                    Get Started
-                    </Button>
-                    </Link>
+                
 
             </div>
 
